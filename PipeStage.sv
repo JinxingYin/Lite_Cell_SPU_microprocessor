@@ -169,7 +169,7 @@ RtValue[0][31:0] = valueIn[0][15:0]*valueIn[1][15:0] + valueIn[2][31:0];
 end
 
 /*  7 and */
-else if(evenOpcode == 13)begin
+else if(evenOpcode == 13)begin  // 11001  1100
 
     for(int i =0; i<128; i++) begin
         if(valueIn[0][i] == 1 && valueIn[1][i] == 1)begin
@@ -4158,27 +4158,26 @@ end
 
 endmodule
 
-
+/*
 module test();
 logic [5:0] PCounter;
 logic clock;
 logic [1:0][6:0] opcode;    
-logic signed [5:0][127:0] valueIn;       /* 0-2 even a,b,c 3-5 odd a,b,c   rt register value will be in 4 when it's used  some cares need to be taken when connect port*/
-logic signed [1:0][17:0] immediateIn;    /* assume uniform length we don't need to know its length operation will just take bits based on 6,7,10,16 or 18*/
+logic signed [5:0][127:0] valueIn;       // 0-2 even a,b,c 3-5 odd a,b,c   rt register value will be in 4 when it's used  some cares need to be taken when connect port
+logic signed [1:0][17:0] immediateIn;    // assume uniform length we don't need to know its length operation will just take bits based on 6,7,10,16 or 18
 logic [1:0] wr_en_in;
 logic [1:0][6:0] RtAddress_in;
-logic [1:0][3:0] ready_stage_in;         /* these three are just bypassing to output*/
-logic signed [1:0][127:0] RtValue_ff;          /* 0 for even 1 for odd*/
+logic [1:0][3:0] ready_stage_in;          //these three are just bypassing to output
+logic signed [1:0][127:0] RtValue_ff;     //      0 for even 1 for odd
 logic [1:0][6:0] RtAddress_out;
 logic [1:0] wr_en_out;
 logic [1:0][3:0] ready_stage_out;
-logic [5:0] branchAddress_ff;       /* new pc address */
+logic [5:0] branchAddress_ff;      //  new pc address 
 logic branchOrNot_ff;
 logic stop_ff;
 
 PipeStage dut (PCounter, clock, opcode, valueIn, immediateIn, wr_en_in, RtAddress_in, ready_stage_in,
 RtValue_ff, RtAddress_out, wr_en_out, ready_stage_out, branchAddress_ff, branchOrNot_ff, stop_ff);
-
 
 // pay attention each clock 2 instructions, 1 for odd, 1 for even
 //register is better to be re-used after 20 clock cycle to prevent data harzard
@@ -4189,15 +4188,13 @@ initial begin
 
     clock = 0;
     PCounter = 0;
-    opcode[0] = 7;
+    opcode[0] = 12;
     opcode[1] = 64;
-    valueIn[0] = 5;
-    valueIn[1] = 3;
-    valueIn[2] = 14;
+    valueIn[0] = 41;
+    valueIn[1] = 42;
+    valueIn[2] = 43;
     valueIn[3] = 15;
-    valueIn[4][100:96] = 5'b0010;
-    valueIn[4][127:101] = 0;
-    valueIn[4][95:0] = 0;
+    valueIn[4] = 0;
     valueIn[5] = 17;
     immediateIn[0] = 9;
     immediateIn[1] = 12;
@@ -4214,7 +4211,10 @@ initial begin
     opcode[0] = 65;
     opcode[1] = 81;
 
-    #5 
+    $finish;
+    end
+endmodule 
+/*    #5 
     clock = 1;
     #5
     clock = 0; 
@@ -4234,7 +4234,7 @@ initial begin
     clock = 0; 
     opcode[0] = 68;
     opcode[1] = 84;
-/*
+
     #5 
     clock = 1;
     #5
@@ -4342,7 +4342,7 @@ initial begin
     #5
     clock = 0; 
     opcode[0] = 90;
-*/
+
     #5 
     clock = 1;
     #5
@@ -4352,7 +4352,7 @@ initial begin
 
     $finish;
     end
-endmodule
+endmodule */
     // ex. for multiply unsigned immediate   and  store quadword
     
     /* store quadword */

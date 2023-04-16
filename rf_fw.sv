@@ -6,7 +6,7 @@ input clock,
 input [1:0] wr_en, 			// input write enable that write data into register file, from write back stage
 input [1:0] wr_back_in, 		// write back in signal is from testbench, represent this instruction need to write back after processing it
 input [1:0][6:0] opcode_in, 
-input signed [1:0][17:0] immediateIn;
+input signed [1:0][17:0] immediateIn,
 input signed[1:0][127:0] data_in,	
 input unsigned [1:0][6:0] rt, 		// 2-D array  [1:0] used for odd or even, obtained from tb
 input unsigned [1:0][6:0] rt_wb, 	// write back to register file, previous instrution write back
@@ -33,6 +33,148 @@ logic unsigned [31:0][127:0] rf_0;
 logic unsigned [31:0][127:0] rf_1;
 logic unsigned [31:0][127:0] rf_2;
 logic unsigned [31:0][127:0] rf_3;
+logic flag = 0;
+always_ff @(posedge clock) begin
+	if (flag == 0) begin
+	rf_0[0] <= 0;
+	rf_0[1] <= 1;
+	rf_0[2] <= 2;
+	rf_0[3] <= 3;
+	rf_0[4] <= 99;
+	rf_0[5] <= 5;
+	rf_0[6] <= 6;
+	rf_0[7] <= 7;
+	rf_0[8] <= 8;
+	rf_0[9] <= 9;
+	rf_0[10] <= 10;
+	rf_0[11] <= 11;
+	rf_0[12] <= 12;
+	rf_0[13] <= 13;
+	rf_0[14] <= 14;
+	rf_0[15] <= 15;
+	rf_0[16] <= 16;
+	rf_0[17] <= 17;
+	rf_0[18] <= 18;
+	rf_0[19] <= 19;
+	rf_0[20] <= 20;
+	rf_0[21] <= 21;
+	rf_0[22] <= 22;
+	rf_0[23] <= 23;
+	rf_0[24] <= 24;
+	rf_0[25] <= 25;
+	rf_0[26] <= 26;
+	rf_0[27] <= 27;
+	rf_0[28] <= 28;
+	rf_0[29] <= 29;
+	rf_0[30] <= 30;
+	rf_0[31] <= 31;
+
+	rf_1[0] <= 32;
+	rf_1[1] <= 33;
+	rf_1[2] <= 34;
+	rf_1[3] <= 35;
+	rf_1[4] <= 36;
+	rf_1[5] <= 37;
+	rf_1[6] <= 38;
+	rf_1[7] <= 39;
+	rf_1[8] <= 40;
+	rf_1[9] <= 41;
+	rf_1[10] <= 42;
+	rf_1[11] <= 43;
+	rf_1[12] <= 44;
+	rf_1[13] <= 45;
+	rf_1[14] <= 46;
+	rf_1[15] <= 47;
+	rf_1[16] <= 48;
+	rf_1[17] <= 49;
+	rf_1[18] <= 50;
+	rf_1[19] <= 51;
+	rf_1[20] <= 52;
+	rf_1[21] <= 53;
+	rf_1[22] <= 54;
+	rf_1[23] <= 55;
+	rf_1[24] <= 56;
+	rf_1[25] <= 57;
+	rf_1[26] <= 58;
+	rf_1[27] <= 59;
+	rf_1[28] <= 60;
+	rf_1[29] <= 61;
+	rf_1[30] <= 62;
+	rf_1[31] <= 63;
+
+	rf_2[0] <= 64;
+	rf_2[1] <= 65;
+	rf_2[2] <= 66;
+	rf_2[3] <= 67;
+	rf_2[4] <= 68;
+	rf_2[5] <= 69;
+	rf_2[6] <= 70;
+	rf_2[7] <= 71;
+	rf_2[8] <= 72;
+	rf_2[9] <= 73;
+	rf_2[10] <= 74;
+	rf_2[11] <= 75;
+	rf_2[12] <= 76;
+	rf_2[13] <= 77;
+	rf_2[14] <= 78;
+	rf_2[15] <= 79;
+	rf_2[16] <= 80;
+	rf_2[17] <= 81;
+	rf_2[18] <= 82;
+	rf_2[19] <= 83;
+	rf_2[20] <= 84;
+	rf_2[21] <= 85;
+	rf_2[22] <= 86;
+	rf_2[23] <= 87;
+	rf_2[24] <= 88;
+	rf_2[25] <= 89;
+	rf_2[26] <= 90;
+	rf_2[27] <= 91;
+	rf_2[28] <= 92;
+	rf_2[29] <= 93;
+	rf_2[30] <= 94;
+	rf_2[31] <= 95;
+
+	rf_3[0] <= 96;
+	rf_3[1] <= 97;
+	rf_3[2] <= 98;
+	rf_3[3] <= 99;
+	rf_3[4] <= 100;
+	rf_3[5] <= 101;
+	rf_3[6] <= 102;
+	rf_3[7] <= 103;
+	rf_3[8] <= 104;
+	rf_3[9] <= 105;
+	rf_3[10] <= 106;
+	rf_3[11] <= 107;
+	rf_3[12] <= 108;
+	rf_3[13] <= 109;
+	rf_3[14] <= 110;
+	rf_3[15] <= 111;
+	rf_3[16] <= 112;
+	rf_3[17] <= 113;
+	rf_3[18] <= 114;
+	rf_3[19] <= 115;
+	rf_3[20] <= 116;
+	rf_3[21] <= 117;
+	rf_3[22] <= 118;
+	rf_3[23] <= 119;
+	rf_3[24] <= 120;
+	rf_3[25] <= 121;
+	rf_3[26] <= 122;
+	rf_3[27] <= 123;
+	rf_3[28] <= 124;
+	rf_3[29] <= 125;
+	rf_3[30] <= 126;
+	rf_3[31] <= 127;
+
+	flag = 1;
+	end
+	else begin
+	end
+end
+
+
 always_ff @(posedge clock) begin
 if(wr_en[0] == 1) begin
 	if (rt_wb[0] <= 31) begin
@@ -460,10 +602,10 @@ always_ff @(posedge clock) begin
      	regEven[2] <= rf_0[rc[0]];
 	end
 	else if (32 <= rc[0] &&  rc[0] <= 63) begin
-     	regEven[2] <= rf_1[rc[1] - 32];
+     	regEven[2] <= rf_1[rc[0] - 32];
 	end
 	else if (64 <= rc[0] &&  rc[0] <= 95) begin
-     	regEven[2] <= rf_2[rc[1] - 64];
+     	regEven[2] <= rf_2[rc[0] - 64];
 	end
 	else if (96 <= rc[0]  &&  rc[0]<= 127) begin
      	regEven[2] <= rf_3[rc[0] - 96];
@@ -484,7 +626,7 @@ endmodule
 
 
 
-module test();
+/*module test();
 logic clock;
 logic [1:0] wr_en; 			// input write enable that write data into register file, from write back stage
 logic [1:0] wr_back_in; 		// write back in signal is from testbench, represent this instruction need to write back after processing it
@@ -673,6 +815,6 @@ initial begin
 	$finish;
 	end
 
-endmodule
+endmodule */
 
 

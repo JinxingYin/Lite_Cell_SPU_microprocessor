@@ -189,7 +189,7 @@ end
 endmodule
 
 
-module test();
+ /*module test();
 
 logic [10:0]testInput;
 logic [6:0] testOutput;
@@ -384,4 +384,4 @@ initial begin
     $finish;
 end
 
-endmodule
+endmodule */

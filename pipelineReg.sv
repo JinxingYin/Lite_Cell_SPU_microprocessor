@@ -9,7 +9,7 @@ input unsigned [3:0]FWstageIn,
 output logic RegWrOut, 
 output logic unsigned [6:0]RegTargetOut, 
 output logic signed [127:0]RegValueOut, 
-output logic unsigned [3:0]FWstageOut, 
+output logic unsigned [3:0]FWstageOut 
 /*output logic FWRRegWrOut, 
 output logic unsigned [6:0] FWRRegTargetOut, 
 output logic signed [127:0]FWRRegValueOut, 
